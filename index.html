@@ -1,0 +1,804 @@
+
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+    <title>Sample Music Website</title>
+
+    
+    <style>
+        
+        header{
+            width: 85%;
+            height:95%;
+            border: 1px solid #001f3d;
+            display: flex;
+            flex-wrap: wrap;
+            overflow: hidden;
+        }
+        /*MENU SIDE CUSTOMIZATIONS*/
+        header .menu_side {
+            position: relative;
+            width: 25%;
+            height: 90%;
+            box-shadow: 5px 0 2px #001f3d;
+            color: #000;
+            background-color: #ececec;
+
+        }
+         
+        header .menu_side h1{
+            font-size: 20px;
+            margin: 15px 0 0 20px;
+            font-weight: 500;
+        }
+        header .menu_side .playlist{
+            margin: 40px 0 0 20px;
+        }
+        header .menu_side .playlist h4{
+            font-size: 15px;
+            font-weight: 400;
+            padding-bottom:10px ;
+            display: flex;
+            align-items: flex-end;
+            color: #001f3d;
+            cursor: pointer;
+            transition: .3s linear;
+        }
+        header .menu_side .playlist h4:hover{
+            color: #000;
+            font-weight: 600;
+        }
+        header .menu_side .playlist h4 span{
+            position: relative;
+            margin-right: 35px;
+        }
+        header .menu_side .playlist h4 span::before{
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border:2px solid #001f3d;
+            border-radius: 50%;
+            top: -4px;
+            transition: .3s linear;
+        }
+        header .menu_side .playlist h4:hover span::before{
+            border:2px solid #000;
+            
+        }
+        header .menu_side .playlist h4 .bi{
+            display: none;
+        }
+        header .menu_side .playlist h4 .active{
+            color: #2e6930;
+        }
+        header .menu_side .playlist h4 .active span{
+            display: none;
+        }
+        header .menu_side .playlist h4 .active .bi{
+            display: flex;
+            margin-right: 20px;
+        }
+        header .menu_side .menu_song{
+            width: 100%;
+            height: 300px;
+            margin-top:40px;
+        }
+        header .menu_side .menu_song li{
+            position:relative;
+            list-style-type: none;
+            padding: 5px 0 5px 20px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: .3s linear;
+        }
+        header .menu_side .menu_song li:hover{
+            background: rgb(105, 105, 170, .1);
+        }
+        header .menu_side .menu_song li span{
+            font-size: 12px;
+            font-weight: 600;
+            color: #001f3d;
+        }
+        header .menu_side .menu_song li img{
+            width: 32px;
+            height: 32px;
+            margin-left: 25px;
+        }
+        header .menu_side .menu_song li h5{
+            font-size: 11px;
+            margin-left: 15px;
+        }
+        header .menu_side .menu_song li h5 .subtitle{
+            font-size: 9px;
+        }
+        header .menu_side .menu_song li .bi{
+            position:absolute;
+            right: 15px;
+            top: 6px;
+            font-size: 15px;
+        }
+        
+        /*MUSIC PLAYER  CUSTOMIZATIONS*/
+        header .master_play{
+            width: 100%;
+            height: 10%;
+            background: #001f3d;
+            box-shadow: 0 3px 8px #2e6930;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+
+        }
+        header .master_play .wave{
+            width: 30px;
+            height: 30px;
+            border:1px solid #ececec;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: flex-end;
+            margin-right: 10px;
+        }
+        header .master_play .wave .wave1{
+            width: 3px;
+            height: 10px;
+            background: #ececec;
+            animation: wave .5s linear infinite;
+        }
+        header .master_play .wave .wave1:nth-child(2){
+            height: 13px;
+            /*animation-delay: .4s;*/
+        }
+        header .master_play .wave .wave1:nth-child(3){
+            height: 8px;
+           /* animation-delay: .8s ;*/
+        }
+        header .master_play .active2 .wave1{
+            animation: wave .5s linear infinite;
+        }
+        header .master_play .active2 .wave1:nth-child(2){
+            animation-delay: .4s;
+        }
+        header .master_play .active2 .wave1:nth-child(3){
+            animation-delay: .8s ;
+        }
+        @keyframes wave{
+            0%{height: 10px;}
+            50%{height:15px;}
+            100%{height: 5px;}
+        }
+        header .master_play img{
+            width: 35px;
+            height: 35px;
+        }
+        header .master_play h5{
+            width: 130px;
+            font-size: 13px;
+            margin-left: 15px;
+            color: #ececec;
+            line-height: 18px;
+        }
+        header .master_play h5 .subtitle{
+            font-size: 11px;
+            color: #ececec;
+        }
+        header .master_play .icon{
+            font-size: 20px;
+            color: #ececec;
+            margin: 0 20px 0 40px;
+        }
+        header .master_play .icon .bi{
+            cursor:pointer;
+            outline: none;
+        }
+        header .master_play .icon .bi:nth-child(2){
+            border: 1px solid rgb(105, 105, 170, .1);
+            border-radius: 50%;
+            padding: 1px 3px 0 6px;
+            margin: 0px 5px;
+            transition: .3s linear;
+        }
+        header .master_play span{
+            color: #ececec;
+            width: 32px;
+            font-size: 12px;
+            font-weight: 400;
+        }
+        header .master_play #currentStart{
+            margin: 0 0 0 20px;
+        }
+        header .master_play .bar{
+            position: relative;
+            width: 43%;
+            height: 2px;
+            background: rgb(105, 105, 170, .1);
+            margin: 0 15px 0 10px;
+        }
+        header .master_play .bar .bar2{
+            position: absolute;
+            width: 0%;
+            height: 100%;
+            background: #2e6930;
+            margin: 0 15px 0 10px;
+            top:0;
+        }
+        header .master_play .bar .dot{
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #4a7c4c;
+            border-radius: 50%;
+            top:-1px;
+            left: 0%;
+            transition: 1s linear;
+        }
+        header .master_play .bar .dot::before{
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border: 1px solid #4a7c4c;
+            border-radius: 50%;
+            top:-6px;
+            left: -6px;
+            transition: 1s linear;
+            box-shadow: inset 0 0 3px #2e6930;
+        }
+        header .master_play .bar input{
+            position: absolute;
+            width: 100%;
+            top: -6px;
+            left: 0;
+            cursor: pointer;
+            z-index: 99999999;
+            transition: 3s linear;
+            opacity: 0;
+            
+        }
+        header .master_play .vol{
+            position: relative;
+            margin-left: 50px;
+            width: 100px;
+            height: 2px;
+            background: rgb(105, 105, 170, .1);
+        }
+        header .master_play .vol .bi{
+            position: relative;
+            top: -17px;
+            left: -30px;
+            font-size: 25px;
+            color: #ececec;
+        }
+        header .master_play .vol input{
+            position: absolute;
+            width: 100%;
+            top: -10px;
+            left: 0;
+            cursor: pointer;
+            z-index: 99999999;
+            transition: 3s linear;
+            opacity: 0;
+            
+        }
+        header .master_play .vol .volBar{
+            position: absolute;
+            width: 0%;
+            height: 100%;
+            background: #2e6930;
+            margin: 0 15px 0 10px;
+            top:0;
+        }
+        header .master_play .vol .dot{
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #4a7c4c;
+            border-radius: 50%;
+            top:-1px;
+            left: 0%;
+            transition: 1s linear;
+        }
+        header .master_play .vol .dot::before{
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border: 1px solid #4a7c4c;
+            border-radius: 50%;
+            top:-6px;
+            left: -6px;
+            transition: 1s linear;
+            box-shadow: inset 0 0 3px #2e6930;
+        }
+        /*SONG SIDE CUSTOMIZATIONS*/
+        header .song_side{
+            width: 75%;
+            height: 90%;
+            background: #ececec;
+            z-index: 2;
+        }
+        header .song_side::before{
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 300px;
+            z-index: -1;
+        }
+        /*SONG SIDE - NAVIGATION BAR CUSTOMIZATIONS*/
+       
+        header .song_side nav{
+            width:90% ;
+            height: 10%;
+            margin: auto;
+           /* border: 1px solid #000;*/
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+        header .song_side nav ul{
+            display: flex;
+        }
+        header .song_side nav ul li{
+            position: relative;
+            list-style-type: none;
+            font-size: 13px;
+            color: #4c5f71;
+            margin-right: 25px;
+            cursor: pointer;
+            transition: .3s linear;
+
+        }
+        header .song_side nav ul li:hover{
+            color: #000;
+            
+        }
+        header .song_side nav ul li:nth-child(1){
+            color: #000; 
+        }
+        header .song_side nav ul li span{
+            position: absolute;
+            width: 100%;
+            height: 2.5px;
+            background: #ececec; 
+            bottom: -5px;
+            left:0 ;
+            border-radius: 20px;
+        }
+         /* NAVIGATION BAR - SEARCH  CUSTOMIZATIONS*/
+        header .song_side nav .search{
+            position: relative;
+            width: 40%;
+            padding: 1px 10px;
+            border-radius: 20px;
+            color: #001f3d;
+        }
+        header .song_side nav .search::before{
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            background: rgb(184, 184, 170,.1);
+            backdrop-filter: blur(5px);
+            z-index: -1;
+        }
+        header .song_side nav .search .bi{
+            font-size: 13px;
+            padding: 3px 0 0 10px; 
+        }
+        header .song_side nav .search .bi{
+            background: none;
+            outline: none;
+            border: none;
+            padding: 0 10px;
+            color: #001f3d;
+            font-size: 12px;
+
+        }
+        /* NAVIGATION BAR CUSTOMIZATIONS CONTINUED*/
+        header .song_side nav .user {
+            position: relative;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor:pointer;
+        }
+        header .song_side nav .user img {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            box-shadow: 2px 2px 8px #2e6930;
+        }
+        header .song_side .content{
+            width: 90%;
+            height: 30%;
+            margin: auto;
+            padding-top:20px ;
+        }
+        header .song_side .content h1{
+            font-size: 25px;
+            font-weight: 600;
+            color: #000;
+        }
+        header .song_side .content p{
+            font-size: 11px;
+            font-weight: 400;
+            color:#001f3d ;
+            margin:5px;
+        }
+        header .song_side .popularSongs{
+            width: 90%;
+            height: auto;
+            margin: auto;
+            margin-top :15px;
+        }
+        header .song_side .popularSongs .h4{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        header .song_side .popularSongs .h4 .bi{
+            color: #001f3d;
+            cursor: pointer;
+            transition: .3s linear;
+        }
+        header .song_side .popularSongs .h4 .bi:hover{
+            color: #4c5f71;
+           
+        }
+        header .song_side .popularSongs .pop_song{
+            width: 100%;
+            height: 150px;
+            margin-top: 15px;
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+        }
+        header .song_side .popularSongs .pop_song::-webkit-scrollbar{
+            display: flex;
+        }
+        header .song_side .popularSongs .pop_song li{ 
+            min-width: 100px;
+            height: 140px;
+            list-style-type: none;
+            margin-right: 10px;
+            transition: .3s linear;
+        }
+        header .song_side .popularSongs .pop_song li{ 
+            background: rgb(105, 105, 170, .1);
+        }
+        header .song_side .popularSongs .pop_song li .imgPlay{ 
+            position: relative;
+            width: 100px ;
+            height: 100px ;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        header .song_side .popularSongs .pop_song li .imgPlay img{ 
+            width: 100% ;
+            height: 100%;
+            
+        }
+        header .song_side .popularSongs .pop_song li .imgPlay .bi{ 
+            position: absolute;
+            font-size: 20px;
+            cursor: pointer;
+            transition: .3s linear;
+            opacity: 0;
+            color: #4a7c4c;   
+        }
+        header .song_side .popularSongs .pop_song li .imgPlay:hover .bi{ 
+            opacity: 1;   
+        }
+        header .song_side .popularSongs .pop_song li h5 {
+            padding: 5px 0 0 5px;
+            line-height: 15px;
+            font-size:10px;
+
+        }
+        header .song_side .popularSongs .pop_song li h5 .subtitle{
+            
+            font-size: 9px;
+            
+        }
+    
+    </style>
+  </head>
+  <body>
+<!--MENU SECTION-->
+  <header>
+      <div class="menu_side">
+          <!---->
+          <h1>Playlist</h1>
+          <div class="playlist">
+              <h4 class = "active"><span></span><i class="bi bi-music-note-beamed"></i>My Playlist</h4>
+              <h4 ><span></span><i class="bi bi-music-note-beamed"></i>Saved</h4>
+              <h4 ><span></span><i class="bi bi-music-note-beamed"></i>Recommended</h4>
+          </div>
+          <!-- 5 DISPLAYED SONGS-->
+          <div class="menu_song">
+              <li class="songItem">
+                  <span>01</span>
+                  <img src = "Media/Circles.png" alt ="Circles">
+                  <h5>
+                      Good News
+                      <div class="subtitle">Mac Miller</div></h5>
+                      <i class="bi playlistPlay bi-play-circle-fill" id="1"></i>
+                </li>
+                <li class="songItem">
+                    <span>02</span>
+                    <img src = "Media/Circles.png" alt ="Circles">
+                    <h5>
+                        Hand Me Downs
+                        <div class="subtitle">Mac Miller</div></h5>
+                        <i class="bi playlistPlay bi-play-circle-fill" id="2"></i>
+                  </li>
+                  <li class="songItem">
+                    <span>03</span>
+                    <img src = "Media/Circles.png" alt ="Circles">
+                    <h5>
+                        Once a Day
+                        <div class="subtitle">Mac Miller</div></h5>
+                        <i class="bi playlistPlay bi-play-circle-fill" id="3"></i>
+                  </li>
+                  <li class="songItem">
+                    <span>04</span>
+                    <img src = "Media/Swimming.png" alt ="Swimming">
+                    <h5>
+                        Self Care
+                        <div class="subtitle">Mac Miller</div></h5>
+                        <i class="bi playlistPlay bi-play-circle-fill" id="4"></i>
+                  </li>
+                  <li class="songItem">
+                    <span>05</span>
+                    <img src = "Media/Swimming.png" alt ="Swimming">
+                    <h5>
+                        2009
+                        <div class="subtitle">Mac Miller</div></h5>
+                        <i class="bi playlistPlay bi-play-circle-fill" id="5"></i>
+                    
+                  </li>
+                </div>
+      </div>
+      <!--SONG SECTION-->
+      <div class="song_side" >
+          <!--NAVIGATION BAR-->
+          <nav>
+            <ul>
+                <li>Download<span></span></li>
+                <li>My Library<span></span></li>
+
+            </ul>
+            <div class="search">
+                <i class="bi bi-search"></i>
+                <input type="text" placeholder="Find Music...">
+            </div>
+            <div class="user">
+                <img src="Media/User.png" alt="User" title="USER NAME">
+            </div>
+        </nav>
+        <!--CONTENT - INFO SUBSECTION-->
+        <div class="content">
+            <h1> Mac Miller</h1>
+            <p> Malcolm James McCormick (aka Mac Miller) was an American rapper and record producer. 
+                <br>Miller began his career in Pittsburgh's hip hop scene in 2007, at the age of fifteen</p>
+        </div>
+        <!--POPULAT SONGS SUBSECTION-->
+        <div class="popularSongs">
+            <div class="h4">
+                <h4>Popular Songs</h4>
+                <div class="btn_s">
+                    <i id= "scroll_left" class="bi bi-arrow-left-short"></i>     
+                    <i  id = "scroll_right" class="bi bi-arrow-right-short"></i>               
+                </div>
+            </div>
+            <div class="pop_song">
+                <li class="songItem">
+                    <div class="imgPlay">
+                        <img src = "https://upload.wikimedia.org/wikipedia/en/1/15/Mac_Miller_-_Circles.png" alt ="Circles">
+                        <i class="bi playlistPlay bi-play-circle-fill" id="6"></i>
+                    </div>
+                    <h5>Good News<br>
+                        <div class="subtitle">Mac Miller</div></h5>
+                </li>
+                <li class="songItem">
+                    <div class="imgPlay">
+                        <img src = "https://upload.wikimedia.org/wikipedia/en/1/15/Mac_Miller_-_Circles.png" alt ="Circles">
+                        <i class="bi playlistPlay bi-play-circle-fill" id="7"></i>
+                    </div>
+                    <h5>Hand Me Downs<br>
+                        <div class="subtitle">Mac Miller</div></h5>
+                </li>
+                <li class="songItem">
+                    <div class="imgPlay">
+                        <img src = "https://upload.wikimedia.org/wikipedia/en/1/15/Mac_Miller_-_Circles.png" alt ="Circles">
+                        <i class="bi playlistPlay bi-play-circle-fill" id="8"></i>
+                    </div>
+                    <h5>Once a Day<br>
+                        <div class="subtitle">Mac Miller</div></h5>
+                </li>
+                <li class="songItem">
+                    <div class="imgPlay">
+                        <img src = "https://upload.wikimedia.org/wikipedia/en/1/15/Mac_Miller_-_Circles.png" alt ="Circles">
+                        <i class="bi playlistPlay bi-play-circle-fill" id="9"></i>
+                    </div>
+                    <h5>Complicated<br>
+                        <div class="subtitle">Mac Miller</div></h5>
+                </li>
+                <li class="songItem">
+                    <div class="imgPlay">
+                        <img src = "https://upload.wikimedia.org/wikipedia/en/5/5e/Mac_Miller_-_Swimming.png" alt ="Swimming">
+                        <i class="bi playlistPlay bi-play-circle-fill" id="10"></i>
+                    </div>
+                    <h5>Self Care<br>
+                        <div class="subtitle">Mac Miller</div></h5>
+                </li>
+                <li class="songItem">
+                    <div class="imgPlay">
+                        <img src = "https://upload.wikimedia.org/wikipedia/en/5/5e/Mac_Miller_-_Swimming.png" alt ="Swimming">
+                        <i class="bi playlistPlay bi-play-circle-fill" id="11"></i>
+                    </div>
+                    <h5>2009<br>
+                        <div class="subtitle">Mac Miller</div></h5>
+                </li>
+                <li class="songItem">
+                    <div class="imgPlay">
+                        <img src = "https://upload.wikimedia.org/wikipedia/en/5/5e/Mac_Miller_-_Swimming.png" alt ="Swimming">
+                        <i class="bi playlistPlay bi-play-circle-fill" id="12"></i>
+                    </div>
+                    <h5>Small Worlds<br>
+                        <div class="subtitle">Mac Miller</div></h5>
+                </li>
+            </div>
+        </div>
+        
+        
+      </div>
+      <!--PLAYER SECTION-->
+      <div class="master_play">
+          <div class="wave">
+              <div class="wave1"></div>
+              <div class="wave1"></div>
+              <div class="wave1"></div>
+              <div class="wave1"></div>
+              <div class="wave1"></div>
+          </div>
+          <img src = "Media/Circles.png" alt ="Circles">
+          <h5>Good News<br>
+          <div class ="subtitle">Mac Miller</div></h5>
+          <div class="icon">
+              <i class="bi bi-skip-start-fill" id="back"></i>
+              <i class="bi bi-skip-end-fill" id="masterPlay"></i>
+              <i class="bi bi-play-fill" id="next"></i>
+            </div>
+            <span id="currentStart">0:00</span>
+            <div class="bar">
+                <input type="range" id="seek" min="0" value="0" max="100">
+                <div class="bar2" id="bar2"></div>
+                <div class="dot"></div>
+                
+            </div>
+            <span id="currentEnd">0:00</span>
+            <div class="volume">
+                <i class="bi bi-volume-down-fill"></i>
+                <input type="range" id="vol" min="0" value="30" max="100">
+                <div class="volBar"></div>
+                <div class="dot" id="volDot"></div>
+            </div>
+
+      </div>
+  </header>
+
+    <!--  
+       NOTE: Stareted working on this navigation bar but liked the other format better, it seemed more organized
+       This was also using Aplayer.js and it did not go great
+       
+        
+<div class = "main">
+    <div class="container">
+        <div class="navbar" id="navbar">
+            <img src="Media/logo.png" class="logo">
+            <ul id="primary-nav" class="primary-nav flex">
+                <li class="active"><a href="index.html">
+                    HOME</a></li>
+                <li><a href="Download.html">
+                    DOWNLOAD</a></li>
+                <li><a href="#">
+                    SEARCH</a></li>
+            </ul>
+        </div>
+        
+        <div class="row">
+            <div class = "col-md-12">
+                <h1> My Music </h1>
+            </div>
+
+            <div class =col-md-3>
+                <a href = "javascript:void();" class="album-poster" data-switch="0" >
+                    <img src = "https://upload.wikimedia.org/wikipedia/en/1/15/Mac_Miller_-_Circles.png"  id="Good_News">
+                </a>
+                <h4> Good News</h4>
+                <p>Mac Miller - 2020</p>
+            </div>
+            <div class =col-md-3> 
+                <a href = "#" class="album-poster" data-switch="1">
+                    <img src = "https://upload.wikimedia.org/wikipedia/en/1/15/Mac_Miller_-_Circles.png" alt ="">
+                </a>
+                <h4> Hand Me Downs</h4> 
+                <p>Mac Miller - 2020</p>
+            </div>
+            <div class =col-md-3>
+                <a href = "#" class="album-poster" data-switch="2">
+                    <img src = "https://upload.wikimedia.org/wikipedia/en/1/15/Mac_Miller_-_Circles.png" alt ="">
+                </a>
+                <h4> Once a Day</h4> 
+                <p>Mac Miller - 2020</p>
+            </div>
+            <div class =col-md-3>
+                <a href = "#" class="album-poster" data-switch="3"> 
+                    <img src = "https://upload.wikimedia.org/wikipedia/en/5/5e/Mac_Miller_-_Swimming.png" alt ="">
+                </a>
+                <h4> Self Care</h4>
+                <p>Mac Miller - 2018</p>
+            </div>
+            <div class =col-md-3>
+                <a href = "#" class="album-poster" data-switch="4">
+                    <img src = "https://upload.wikimedia.org/wikipedia/en/5/5e/Mac_Miller_-_Swimming.png" alt ="">
+                </a>
+                <h4> 2009</h4>
+                <p>Mac Miller - 2018</p>
+            </div>
+            <div class =col-md-3>
+                <a href = "#" class="album-poster" data-switch="5">
+                    <img src = "https://upload.wikimedia.org/wikipedia/en/7/72/Miley_Cyrus_-_Younger_Now_%28Official_Album_Cover%29.png" alt ="">
+                </a>
+                <h4> Younger Now</h4>
+                <p>Miley Cyrus - 2017</p>
+            </div>-->
+             <!--
+            <div class =col-md-3>
+                <a href = "javascript:void();" class="album-poster">
+                    <img src = "https://upload.wikimedia.org/wikipedia/en/8/87/Doja_Cat_-_Hot_Pink.png" alt ="">
+                </a>
+               
+                <h4> Addiction </h4>
+                <p>Doja Cat - 2019</p>
+            </div>
+            <div class =col-md-3>
+                <a href = "javascript:void();" class="album-poster">
+                    <img src = "https://upload.wikimedia.org/wikipedia/en/8/87/Doja_Cat_-_Hot_Pink.png" alt ="">
+                </a>
+                <h4> Rules </h4>
+                <p>Doja Cat - 2019</p>
+                
+            </div>--><!--Name , artist name , album cover, release date-->
+        </div>
+       
+    </div>
+</div>
+ 
+</script>
+<script src="app.js"></script>
+
+    
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  
+    
+</body>
+</html>
